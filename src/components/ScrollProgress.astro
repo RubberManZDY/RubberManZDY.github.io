@@ -1,0 +1,32 @@
+---
+// Thin reading-progress bar pinned to the top of the viewport (above the nav).
+---
+
+<div
+  id="scroll-progress"
+  class="fixed inset-x-0 top-0 z-50 h-0.5 origin-left scale-x-0 bg-accent"
+  role="presentation"
+  aria-hidden="true"
+></div>
+
+<script>
+  const bar = document.getElementById('scroll-progress')!;
+  let ticking = false;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    bar.style.transform = `scaleX(${ratio})`;
+    ticking = false;
+  };
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  update();
+</script>

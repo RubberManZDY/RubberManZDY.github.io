@@ -1,0 +1,44 @@
+---
+import { profile } from '../data/profile';
+
+/**
+ * Portrait with a double-frame treatment. Renders a serif monogram
+ * placeholder until profile.photo is set (see src/data/profile.ts).
+ */
+---
+
+<figure class="relative">
+  <div class="relative overflow-hidden rounded-lg">
+    {
+      profile.photo ? (
+        <img
+          src={profile.photo}
+          alt={`Portrait of ${profile.name}`}
+          width="480"
+          height="600"
+          fetchpriority="high"
+          class="aspect-4/5 w-full object-cover"
+        />
+      ) : (
+        <div
+          class="flex aspect-4/5 w-full items-center justify-center bg-gradient-to-br from-[#16233d] via-[#1e3a6e] to-[#1e40af]"
+          aria-hidden="true"
+        >
+          <span class="font-serif text-7xl font-light tracking-tight text-white/90">
+            {profile.initials}
+          </span>
+        </div>
+      )
+    }
+    <!-- Offset inner frame -->
+    <div class="pointer-events-none absolute inset-3 rounded-md border border-white/25"></div>
+  </div>
+  <!-- Offset outer frame -->
+  <div class="pointer-events-none absolute -inset-2 -z-10 rounded-lg border border-line" aria-hidden="true"></div>
+
+  {profile.photoCaption && (
+    <figcaption class="mt-4 text-center font-mono text-[11px] leading-5 tracking-wide text-ink2 whitespace-pre-line">
+      {profile.photoCaption}
+    </figcaption>
+  )}
+</figure>

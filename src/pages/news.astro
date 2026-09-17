@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import NewsList from '../components/NewsList.astro';
+import { getCollection } from 'astro:content';
+
+const news = (await getCollection('news')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="News" description="Recent updates from Dunyi Zhou.">
+  <div class="mx-auto max-w-3xl px-5 py-16 sm:px-8 md:py-20">
+    <SectionHeading kicker="Timeline" title="All updates" />
+    <NewsList items={news} />
+  </div>
+</BaseLayout>

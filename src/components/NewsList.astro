@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  items: CollectionEntry<'news'>[];
+}
+
+const { items } = Astro.props;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+
+<ul class="divide-y divide-line">
+  {
+    items.map((item) => (
+      <li class="flex flex-col gap-1 py-4 first:pt-0 last:pb-0 sm:flex-row sm:gap-6">
+        <time datetime={item.data.date.toISOString()} class="w-32 shrink-0 font-mono text-xs text-accent">
+          {formatDate(item.data.date)}
+        </time>
+        <p class="text-sm leading-6 text-ink2">
+          {item.data.text}
+          {item.data.link && (
+            <>
+              {' '}
+              <a href={item.data.link} target="_blank" rel="noopener" class="link-underline font-medium text-ink">
+                {item.data.linkLabel ?? 'Read more'} <span aria-hidden="true">↗</span>
+              </a>
+            </>
+          )}
+        </p>
+      </li>
+    ))
+  }
+</ul>

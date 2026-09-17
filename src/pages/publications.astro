@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import { getCollection } from 'astro:content';
+
+const publications = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+
+// Group by year
+const byYear = new Map<number, typeof publications>();
+for (const pub of publications) {
+  const list = byYear.get(pub.data.year) ?? [];
+  list.push(pub);
+  byYear.set(pub.data.year, list);
+}
+---
+
+<BaseLayout title="Publications" description="Publications by Dunyi Zhou.">
+  <div class="mx-auto max-w-4xl px-5 py-16 sm:px-8 md:py-20">
+    <SectionHeading kicker="Publications" title="Publications" />
+
+    {
+      [...byYear.entries()].map(([year, items]) => (
+        <section class="mb-10" aria-label={`Publications from ${year}`}>
+          <h3 class="mb-2 font-serif text-2xl text-ink">{year}</h3>
+          <ul class="divide-y divide-line">
+            {items.map((pub) => <PublicationItem publication={pub} />)}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

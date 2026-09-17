@@ -1,0 +1,25 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  /** Optional link rendered at the right edge of the heading row. */
+  href?: string;
+  hrefLabel?: string;
+}
+
+const { kicker, title, href, hrefLabel } = Astro.props;
+---
+
+<div class="mb-8 flex items-end justify-between gap-4">
+  <div>
+    <p class="kicker mb-2">{kicker}</p>
+    <h2 class="display text-3xl">{title}</h2>
+  </div>
+  {
+    href && (
+      <a href={href} class="link-underline hidden text-sm font-medium text-ink2 sm:block">
+        {hrefLabel ?? 'View all'} <span aria-hidden="true">↗</span>
+      </a>
+    )
+  }
+</div>
