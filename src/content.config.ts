@@ -39,6 +39,8 @@ const projects = defineCollection({
     end: z.string().optional(),
     /** One-paragraph teaser for cards. */
     summary: z.string(),
+    /** Optional lead-in rendered in accent color before summary on cards. */
+    summaryLead: z.string().optional(),
     /** Featured projects appear on the home page. */
     featured: z.boolean().default(false),
     links: z

@@ -1,10 +1,11 @@
 ---
-title: "LPA-MoE: Period-Aware MoE for Time-Series Forecasting"
-tag: "Efficient deep learning"
+title: "LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers"
+tag: "Machine learning for IIoT"
 status: "Published at ICCC"
 start: "Feb 2026"
 end: "Aug 2026"
-summary: "A lightweight period-aware Mixture-of-Experts model for time-series forecasting in data centers, published as a first-author paper at ICCC."
+summaryLead: "First-author paper"
+summary: "published at the International Conference on Computer and Communications (ICCC)."
 featured: true
 links:
   - label: "Paper (IEEE Xplore)"

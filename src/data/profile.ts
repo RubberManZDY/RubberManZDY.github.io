@@ -33,20 +33,35 @@ export const profile = {
   ],
 
   education: {
-    degree: 'B.Eng. in Telecommunications Engineering with Management',
-    school: 'Beijing University of Posts and Telecommunications (BUPT)',
+    degree: 'Bachelor of Engineering in Telecommunications Engineering with Management',
+    school: 'Beijing University of Posts and Telecommunications (BUPT; Project 211)',
     schoolUrl: 'https://www.bupt.edu.cn/',
-    note: 'Dual B.Eng. from Queen Mary University of London (QMUL), UK',
-    period: 'Sep 2023 – Jun 2027 (expected)',
-    gpa: 'GPA 3.68 / 4.0 (89.27 / 100) · Top 16% (47 / 293)',
+    note: 'Dual Degree of Engineering from Queen Mary University of London (QMUL), the United Kingdom',
+    period: '09/2023-07/2027',
+    gpa: 'GPA: 3.68/4.0 (89.27/100) · Ranking: Top 16% (47/293)',
     courses: [
       { name: 'Principles of Communications I', score: 98 },
       { name: 'Introduction to Electronic System', score: 98 },
       { name: 'Digital Circuit Design', score: 97 },
-      { name: 'Microwave, Millimeter-wave & Optical Transmission', score: 97 },
+      { name: 'Microwave, Millimeterwave and Optical Transmission', score: 97 },
       { name: 'Machine Learning', score: 93 },
     ],
   },
+
+  /** Research experience (rendered on the CV page, wording matches the CV PDF). */
+  researchExperience: [
+    {
+      title: 'First Author, LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers',
+      subtitle: 'Published in the International Conference on Computer and Communications (ICCC)',
+      period: '02/2026-08/2026',
+      link: { label: 'Paper', url: 'https://ieeexplore.ieee.org/document/11680246' },
+      bullets: [
+        'Period-Aware Modeling Paradigm: Designed a period-aware modeling paradigm tailored for data-center refrigeration scenarios, targeting multi-scale periodic patterns and heterogeneous dynamics in time-series data; integrated FFT-based periodic embedding with sparse MoE routing to explicitly decouple periodic variations and mitigate pattern interference.',
+        'Feature Extraction Design: Proposed the LPA-MoE framework equipped with gated lightweight TimesBlock; adopted depthwise separable convolutions to extract fine-grained temporal and multi-scale periodic features from raw time-series data, achieving high inference efficiency and low computational overhead.',
+        'Experiment Design & Performance Evaluation: Conducted model validation and comparative experiments using real-world IoT datasets from data center refrigeration units. Results showed that LPA-MoE improves prediction accuracy and stability for multi-pattern time-series data, exhibiting superior generalization performance and validating the industrial application value of MoE in energy-saving scenarios.',
+      ],
+    },
+  ],
 
   researchInterests: [
     'Time-series analysis & forecasting',
@@ -64,12 +79,12 @@ export const profile = {
 
   awards: [
     {
-      title: 'First Prize, 16th National College Students Mathematical Competition (Non-Mathematics Category A)',
+      title: 'First Prize in the 16th National College Students Mathematical Competition (Non-Mathematics Category A)',
       issuer: 'Chinese Mathematical Society',
       date: 'Dec 2024',
     },
     {
-      title: 'First Prize, 35th Beijing College Students Mathematical Competition (Non-Mathematics Major Group A)',
+      title: 'First Prize in the 35th Beijing College Students Mathematical Competition (Non-Mathematics Major Group A)',
       issuer: 'Beijing Mathematical Society',
       date: 'Dec 2024',
     },
@@ -82,25 +97,30 @@ export const profile = {
 
   honors: [
     {
-      title: "Runner-up, Men's Team Event, 27th Chinese College Students Badminton Championship (General Group) Finals",
+      title: "Runner-up in Men's Team Event of the 27th Chinese College Students Badminton Championship (General Group) Finals",
       issuer: 'China Student Sports Federation',
       date: 'Jan 2026',
     },
     {
-      title: "Runner-up, Men's Team Event, North Regional Tournament, 27th Chinese College Students Badminton Championship (General Group)",
+      title: "Runner-up in Men's Team Event in the North Regional Tournament of the 27th Chinese College Students Badminton Championship (General Group)",
       issuer: 'China Student Sports Federation',
       date: 'Nov 2025',
     },
     {
-      title: 'Fifth Place, Mixed Doubles (Group A), 33rd Capital College Badminton Championship',
+      title: 'Fifth Place in Mixed Doubles (Group A) in the 33rd Capital College Badminton Championship (Individual Events)',
       issuer: 'Beijing College Students Sports Association',
       date: 'May 2025',
+    },
+    {
+      title: 'Activist in Literature, Sports, and Extracurricular Activities',
+      issuer: 'BUPT',
+      date: 'Oct 2024',
     },
   ],
 
   other: [
-    { label: 'Standardized Test', value: 'IELTS 7.0 (Listening 8.5 · Reading 7.0 · Writing 6.0 · Speaking 6.0)', date: 'Apr 2026' },
-    { label: 'Extracurricular', value: 'Volunteer services: alumni reception for the university anniversary; referee at badminton competitions', date: '' },
+    { label: 'Standardized Test', value: 'IELTS 7.0 (Listening 8.5 Reading 7.0 Writing 6.0 Speaking 6.0)', date: 'Apr 2026' },
+    { label: 'Extracurricular Activity', value: 'Participated in various volunteer services, such as receiving alumni for the celebration of the university anniversary, and serving as a referee in the badminton competition', date: '' },
   ],
 
   /** Extra links in the intro / footer. Add GitHub etc. when available. */

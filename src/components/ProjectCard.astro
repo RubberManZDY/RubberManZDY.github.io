@@ -8,18 +8,22 @@ interface Props {
 }
 
 const { project, compact = false } = Astro.props;
-const { title, tag, status, summary } = project.data;
+const { title, tag, status, summary, summaryLead } = project.data;
 const href = `/research/${project.id}/`;
 ---
 
 <article class="card card-hover group flex flex-col p-6">
-  <p class="kicker">{tag}</p>
+  <p class="kicker normal-case">{tag}</p>
   <h3 class:list={['display mt-2 text-xl leading-snug', compact ? 'text-xl' : 'text-2xl']}>
     <a href={href} class="transition-colors group-hover:text-accent">
       {title}
     </a>
   </h3>
-  <p class:list={['mt-3 text-sm leading-6 text-ink2', compact && 'line-clamp-3']}>{summary}</p>
+  <p class:list={['mt-3 text-sm leading-6 text-ink2', compact && 'line-clamp-3']}>
+    {summaryLead && <span class="font-medium text-accent">{summaryLead}</span>}
+    {summaryLead && ' '}
+    {summary}
+  </p>
   <div class="mt-auto flex items-center justify-between pt-5">
     <span class="font-mono text-[11px] uppercase tracking-wider text-ink2">{status}</span>
     <a

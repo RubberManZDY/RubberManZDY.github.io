@@ -38,7 +38,7 @@ const renderedExperiences = await Promise.all(
           <p class="mt-1 text-sm text-ink2">{profile.education.school}</p>
           <p class="text-sm text-ink2">{profile.education.note}</p>
         </div>
-        <span class="font-mono text-xs text-ink2">{profile.education.period}</span>
+        <span class="shrink-0 font-mono text-xs whitespace-nowrap text-ink2">{profile.education.period}</span>
       </div>
       <p class="mt-3 text-sm font-medium text-accent">{profile.education.gpa}</p>
       <p class="mt-4 text-sm text-ink2">
@@ -47,15 +47,15 @@ const renderedExperiences = await Promise.all(
       </p>
     </section>
 
-    <!-- Experience -->
+    <!-- Internship experience -->
     <section class="border-t border-line py-12" aria-labelledby="cv-experience">
-      <h2 id="cv-experience" class="display mb-6 text-2xl">Experience</h2>
+      <h2 id="cv-experience" class="display mb-6 text-2xl">Internship Experience</h2>
       {
         renderedExperiences.map(({ exp, body }) => (
           <div class="mb-8 last:mb-0">
             <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-              <h3 class="text-[15px] font-semibold text-ink">{exp.data.role} · {exp.data.org}</h3>
-              <span class="font-mono text-xs text-ink2">{exp.data.start} – {exp.data.end}</span>
+              <h3 class="text-[15px] font-semibold text-ink">{exp.data.role}, {exp.data.org}</h3>
+              <span class="shrink-0 font-mono text-xs whitespace-nowrap text-ink2">{exp.data.start}-{exp.data.end}</span>
             </div>
             <div class="prose-body mt-3">
               <body.Content />
@@ -65,9 +65,46 @@ const renderedExperiences = await Promise.all(
       }
     </section>
 
+    <!-- Research experience -->
+    <section class="border-t border-line py-12" aria-labelledby="cv-research">
+      <h2 id="cv-research" class="display mb-6 text-2xl">Research Experience</h2>
+      {
+        profile.researchExperience.map((research) => (
+          <div>
+            <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+              <h3 class="text-[15px] font-semibold text-ink">{research.title}</h3>
+              <span class="shrink-0 font-mono text-xs whitespace-nowrap text-ink2">{research.period}</span>
+            </div>
+            <p class="mt-1 text-sm text-ink2">
+              {research.subtitle}
+              <a
+                href={research.link.url}
+                target="_blank"
+                rel="noopener"
+                class="link-underline ml-2 font-medium text-ink"
+              >
+                {research.link.label} <span aria-hidden="true">↗</span>
+              </a>
+            </p>
+            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-ink2 marker:text-accent">
+              {research.bullets.map((bullet) => {
+                const [lead, ...rest] = bullet.split(':');
+                return (
+                  <li>
+                    <strong class="font-semibold text-ink">{lead}:</strong>
+                    {rest.join(':')}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
     <!-- Awards -->
     <section class="border-t border-line py-12" aria-labelledby="cv-awards">
-      <h2 id="cv-awards" class="display mb-6 text-2xl">Awards</h2>
+      <h2 id="cv-awards" class="display mb-6 text-2xl">Academic Award</h2>
       <ul class="divide-y divide-line">
         {
           profile.awards.map((award) => (
@@ -85,7 +122,7 @@ const renderedExperiences = await Promise.all(
 
     <!-- Skills -->
     <section class="border-t border-line py-12" aria-labelledby="cv-skills">
-      <h2 id="cv-skills" class="display mb-6 text-2xl">Skills</h2>
+      <h2 id="cv-skills" class="display mb-6 text-2xl">Technical Skills</h2>
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {
           profile.skills.map((group) => (
@@ -104,9 +141,10 @@ const renderedExperiences = await Promise.all(
       </div>
     </section>
 
-    <!-- Honors & other -->
+    <!-- Others -->
     <section class="border-t border-line py-12" aria-labelledby="cv-honors">
-      <h2 id="cv-honors" class="display mb-6 text-2xl">Honors &amp; Activities</h2>
+      <h2 id="cv-honors" class="display mb-6 text-2xl">Others</h2>
+      <p class="kicker mb-4">Athletic Honors</p>
       <ul class="divide-y divide-line">
         {
           profile.honors.map((honor) => (
@@ -119,6 +157,8 @@ const renderedExperiences = await Promise.all(
             </li>
           ))
         }
+      </ul>
+      <ul class="mt-6 divide-y divide-line">
         {
           profile.other.map((entry) => (
             <li class="flex flex-col gap-1 py-3.5 first:pt-0 last:pb-0 sm:flex-row sm:items-baseline sm:gap-6">
