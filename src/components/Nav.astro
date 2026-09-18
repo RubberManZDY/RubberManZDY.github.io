@@ -4,12 +4,12 @@ import { profile } from '../data/profile';
 
 const links = [
   { href: '/', label: 'About' },
-  { href: '/research/', label: 'Research' },
+  { href: '/projects/', label: 'Projects' },
   { href: '/publications/', label: 'Publications' },
   { href: '/cv/', label: 'CV' },
 ];
 
-// Active state: exact match, or prefix match for section pages (/research/...)
+// Active state: exact match, or prefix match for section pages (/projects/...)
 const isActive = (href: string) =>
   href === '/'
     ? Astro.url.pathname === '/'

@@ -8,8 +8,8 @@ interface Props {
 }
 
 const { project, compact = false } = Astro.props;
-const { title, tag, status, summary, summaryLead } = project.data;
-const href = `/research/${project.id}/`;
+const { title, tag, status, summary, summaryLead, image } = project.data;
+const href = `/projects/${project.id}/`;
 ---
 
 <article class="card card-hover group flex flex-col p-6">
@@ -19,6 +19,23 @@ const href = `/research/${project.id}/`;
       {title}
     </a>
   </h3>
+  {
+    image && (
+      <a
+        href={href}
+        tabindex="-1"
+        aria-hidden="true"
+        class="my-4 block overflow-hidden rounded-lg border border-line bg-white"
+      >
+        <img
+          src={image}
+          alt=""
+          loading="lazy"
+          class="aspect-[2/1] w-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.03]"
+        />
+      </a>
+    )
+  }
   <p class:list={['mt-3 text-sm leading-6 text-ink2', compact && 'line-clamp-3']}>
     {summaryLead && <span class="font-medium text-accent">{summaryLead}</span>}
     {summaryLead && ' '}

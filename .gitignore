@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # leftover scaffold directory (safe to delete manually)
 lonely-luminosity/
+
+# local source materials not part of the site
+/官网论文pdf.pdf
+/data_center_system.png
+/img/periodic_embedding_rgb.png

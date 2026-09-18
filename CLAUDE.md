@@ -13,7 +13,7 @@
 
 ## Design Reference（参考的开源项目）
 
-- **[alshedivat/al-folio](https://github.com/alshedivat/al-folio)**（16k+ ★，MIT）— 主要参考。参考站 chengle-fan.github.io 即此主题。借用的设计语言：About/Research/Publications/CV 页面结构、首页大幅人像 intro、eyebrow 领域词、section kicker、论文条目列表（年份栏 + 标题 + 作者 + 链接徽章）、news 时间线、暗色/亮色切换、滚动进度条、contact strip。
+- **[alshedivat/al-folio](https://github.com/alshedivat/al-folio)**（16k+ ★，MIT）— 主要参考。参考站 chengle-fan.github.io 即此主题。借用的设计语言：About/Projects/Publications/CV 页面结构、首页大幅人像 intro、eyebrow 领域词、section kicker、论文条目列表（年份栏 + 标题 + 作者 + 链接徽章）、news 时间线、暗色/亮色切换、滚动进度条、contact strip。
 - **[academicpages/academicpages.github.io](https://github.com/academicpages/academicpages.github.io)**（17k+ ★）— 内容组织参考（Markdown 数据驱动、内容与代码分离）。
 - **[mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes)** — Jekyll 老牌主题，排版细节参考。
 - 技术栈参考：[withastro/astro](https://github.com/withastro/astro)、[tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss)。
@@ -53,7 +53,7 @@ npm run preview      # preview the production build
 
 **论文**：在 `src/content/publications/` 新建 `xxx.md`，frontmatter：`title / authors（第一位加粗显示）/ venue / venueAbbr / year / status / summary / links[]`。自动出现在 Publications 页。
 
-**项目**：在 `src/content/projects/` 新建 `yyy.md`，frontmatter：`title / tag / status / start / end / summary / featured / links[]`，正文为 Markdown。自动生成 `/research/yyy/` 详情页。
+**项目**：在 `src/content/projects/` 新建 `yyy.md`，frontmatter：`title / tag / status / start / end / summary / featured / links[]`，正文为 Markdown。自动生成 `/projects/yyy/` 详情页。
 
 **新闻**：在 `src/content/news/` 新建 `YYYY-MM-DD-xxx.md`，frontmatter：`date / text / link?`。
 
@@ -81,9 +81,9 @@ npm run preview      # preview the production build
 
 ## TODO（内容待补）
 
+- [x] **项目页配图**：Fig. 1–5 全部就位（`public/projects/lpa-moe/`）
 - [ ] `public/portrait.jpg` 放正式照片，并把 `src/data/profile.ts` 的 `photo` 设为 `'/portrait.jpg'`
 - [ ] `public/cv.pdf` 放简历 PDF（CV 页下载按钮指向它）
-- [ ] `lpa-moe.md` 的 `authors` 补充共同作者
 - [ ] 论文摘要（`summary`）与项目页正文为基于 CV 的草稿，请核对措辞
 - [ ] 页脚引语（Galileo）可换成自己的座右铭
 - [ ] 部署前替换 `site.url` 与 `profile.ts` 顶部 TODO 标注的 URL

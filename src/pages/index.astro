@@ -27,7 +27,7 @@ const news = (await getCollection('news'))
         <p class="mt-6 max-w-xl text-[17px] leading-8 text-ink2">{profile.lead}</p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a href="/research/" class="btn-solid">Explore my research <span aria-hidden="true">→</span></a>
+          <a href="/projects/" class="btn-solid">Explore my projects <span aria-hidden="true">→</span></a>
           <a href="/cv/" class="btn-outline">View CV</a>
           <a href={`mailto:${profile.email}`} class="link-underline text-sm font-medium text-ink">
             {profile.email}
@@ -99,9 +99,9 @@ const news = (await getCollection('news'))
     <!-- ================= Selected research ================= -->
     <section class="border-t border-line py-16 md:py-20" aria-labelledby="research-heading">
       <SectionHeading
-        kicker="Research"
-        title="Selected research"
-        href="/research/"
+        kicker="Projects"
+        title="Selected projects"
+        href="/projects/"
         hrefLabel="All projects"
       />
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">

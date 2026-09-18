@@ -1,8 +1,12 @@
 ---
-# TODO: add co-authors to the authors list (only first author is currently listed).
 title: "LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers"
 authors:
   - "Dunyi Zhou"
+  - "Zongyi Liu"
+  - "Bo Cheng"
+  - "Wei Zou"
+  - "Yu Sun"
+  - "Haibo Zhou"
 venue: "2026 IEEE/CIC International Conference on Communications in China (ICCC)"
 venueAbbr: "ICCC"
 year: 2026
