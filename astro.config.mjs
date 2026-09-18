@@ -8,6 +8,8 @@ export default defineConfig({
   site: 'https://dunyi-zhou.github.io',
   // User-site repo (<username>.github.io) -> '/'; project-site repo -> '/<repo>/'
   base: '/',
+  // Hide the Astro dev toolbar (bottom bar in `npm run dev`)
+  devToolbar: { enabled: false },
   vite: {
     plugins: [tailwindcss()],
   },

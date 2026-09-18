@@ -5,7 +5,7 @@ status: "Published at ICCC"
 start: "Feb 2026"
 end: "Aug 2026"
 summaryLead: "First-author paper"
-summary: "published at the International Conference on Computer and Communications (ICCC)."
+summary: "published at the 2026 IEEE/CIC International Conference on Communications in China (ICCC)."
 featured: true
 links:
   - label: "Paper (IEEE Xplore)"
@@ -25,4 +25,4 @@ We designed LPA-MoE around two ideas:
 
 ## Results
 
-Validated on real-world IoT datasets from data-center refrigeration units, LPA-MoE improves prediction accuracy and stability for multi-pattern time-series data, showing superior generalization and demonstrating the industrial value of MoE in energy-saving scenarios. The work was published as a first-author paper at the International Conference on Computer and Communications (ICCC).
+Validated on real-world IoT datasets from data-center refrigeration units, LPA-MoE improves prediction accuracy and stability for multi-pattern time-series data, showing superior generalization and demonstrating the industrial value of MoE in energy-saving scenarios. The work was published as a first-author paper at the 2026 IEEE/CIC International Conference on Communications in China (ICCC).

@@ -29,7 +29,7 @@ export const profile = {
 
   bio: [
     'I am an undergraduate at BUPT pursuing a B.Eng. in Telecommunications Engineering with Management, alongside a dual degree with Queen Mary University of London (QMUL). My work centers on efficient deep learning for time-series data and next-generation wireless systems.',
-    'My first-author paper, LPA-MoE, was published at the International Conference on Computer and Communications (ICCC). I also gained industry experience at ZTE, analyzing field-test data for 5G-A integrated sensing and communication (ISAC) systems. I am looking for graduate research opportunities in machine learning and wireless communications.',
+    'My first-author paper, LPA-MoE, was published at the 2026 IEEE/CIC International Conference on Communications in China (ICCC). I also gained industry experience at ZTE, analyzing field-test data for 5G-A integrated sensing and communication (ISAC) systems. I am looking for graduate research opportunities in machine learning and wireless communications.',
   ],
 
   education: {
@@ -52,7 +52,7 @@ export const profile = {
   researchExperience: [
     {
       title: 'First Author, LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers',
-      subtitle: 'Published in the International Conference on Computer and Communications (ICCC)',
+      subtitle: 'Published in the 2026 IEEE/CIC International Conference on Communications in China (ICCC)',
       period: '02/2026-08/2026',
       link: { label: 'Paper', url: 'https://ieeexplore.ieee.org/document/11680246' },
       bullets: [

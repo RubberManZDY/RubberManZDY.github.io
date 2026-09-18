@@ -3,7 +3,7 @@
 title: "LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers"
 authors:
   - "Dunyi Zhou"
-venue: "International Conference on Computer and Communications (ICCC)"
+venue: "2026 IEEE/CIC International Conference on Communications in China (ICCC)"
 venueAbbr: "ICCC"
 year: 2026
 status: "First-author paper"
