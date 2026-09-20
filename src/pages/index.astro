@@ -7,10 +7,16 @@ import NewsList from '../components/NewsList.astro';
 import { profile } from '../data/profile';
 import { getCollection } from 'astro:content';
 
-const projects = (await getCollection('projects')).filter((p) => p.data.featured);
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  // Research projects first (LPA-MoE left), course projects second
+  .sort((a, b) => (a.data.category === b.data.category ? 0 : a.data.category === 'research' ? -1 : 1));
 const news = (await getCollection('news'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+// Split the lead on the paper title so the title can be styled with the serif display font
+const leadParts = profile.lead.split(profile.paperTitle);
 ---
 
 <BaseLayout>
@@ -24,11 +30,32 @@ const news = (await getCollection('news'))
         </h1>
         <p class="mt-4 text-lg text-ink2">{profile.role}</p>
 
-        <p class="mt-6 max-w-xl text-[17px] leading-8 text-ink2">{profile.lead}</p>
+        <p class="mt-6 max-w-xl text-[17px] leading-8 text-ink2">
+          {leadParts[0]}
+          <a
+            href={profile.paperUrl}
+            target="_blank"
+            rel="noopener"
+            class="font-serif font-medium tracking-tight text-ink underline decoration-accent/30 decoration-1 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+          >
+            {profile.paperTitle}
+          </a>
+          {leadParts.slice(1).join(profile.paperTitle)}
+        </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a href="/projects/" class="btn-solid">Explore my projects <span aria-hidden="true">→</span></a>
-          <a href="/cv/" class="btn-outline">View CV</a>
+          <a
+            href="/projects/"
+            class="rounded-md border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:border-accent hover:text-accent"
+          >
+            Explore my projects <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            href="/cv/"
+            class="rounded-md border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:border-accent hover:text-accent"
+          >
+            View CV <span aria-hidden="true">↗</span>
+          </a>
           <a href={`mailto:${profile.email}`} class="link-underline text-sm font-medium text-ink">
             {profile.email}
           </a>
@@ -42,7 +69,7 @@ const news = (await getCollection('news'))
 
     <!-- ================= About ================= -->
     <section class="border-t border-line py-16 md:py-20" aria-labelledby="about-heading">
-      <SectionHeading kicker="Background &amp; interests" title="About me" />
+      <SectionHeading kicker="Background & interests" title="About me" />
       <div class="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
         <div class="space-y-4 text-[15px] leading-7 text-ink2">
           {profile.bio.map((p) => <p>{p}</p>)}
@@ -59,9 +86,6 @@ const news = (await getCollection('news'))
               ))}
             </ul>
           </div>
-          <p class="mt-4 px-1 text-sm leading-6 text-ink2">
-            I am looking for graduate research opportunities in machine learning and wireless communications.
-          </p>
         </div>
       </div>
     </section>
@@ -86,12 +110,39 @@ const news = (await getCollection('news'))
         <div class="mt-5">
           <p class="kicker">Core courses</p>
           <ul class="mt-3 flex flex-wrap gap-2">
-            {profile.education.courses.map((c) => (
+            {profile.education.courses.filter((c) => c.featured).map((c) => (
               <li class="rounded-md border border-line px-2.5 py-1 text-xs text-ink2">
                 {c.name} <span class="font-mono font-medium text-ink">{c.score}</span>
               </li>
             ))}
           </ul>
+          {
+            profile.education.courses.some((c) => !c.featured) && (
+              <>
+                <ul id="courses-more" class="mt-2 hidden flex flex-wrap gap-2">
+                  {profile.education.courses.filter((c) => !c.featured).map((c) => (
+                    <li class="rounded-md border border-line px-2.5 py-1 text-xs text-ink2">
+                      {c.name} <span class="font-mono font-medium text-ink">{c.score}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-4 flex justify-end">
+                  <button
+                    id="courses-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="courses-more"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-accent transition-colors hover:text-accent-strong"
+                  >
+                    <span id="courses-toggle-label">Show more</span>
+                    <svg id="courses-chevron" class="h-3 w-3 transition-transform duration-200" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m3 4.5 3 3 3-3" />
+                    </svg>
+                  </button>
+                </div>
+              </>
+            )
+          }
         </div>
       </div>
     </section>
@@ -122,10 +173,29 @@ const news = (await getCollection('news'))
           <h2 id="contact-heading" class="display text-3xl">Get in touch</h2>
           <p class="mt-2 text-[15px] text-ink2">I am always happy to discuss research ideas and opportunities.</p>
         </div>
-        <a href={`mailto:${profile.email}`} class="btn-solid">
-          Email me <span aria-hidden="true">→</span>
+        <a
+          href={`mailto:${profile.email}`}
+          class="rounded-md border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:border-accent hover:text-accent"
+        >
+          Email me <span aria-hidden="true">↗</span>
         </a>
       </div>
     </section>
   </div>
 </BaseLayout>
+
+<script>
+  // Toggle hidden core courses ("Show more" / "Show less")
+  const coursesToggle = document.getElementById('courses-toggle');
+  const coursesMore = document.getElementById('courses-more');
+  if (coursesToggle && coursesMore) {
+    const label = document.getElementById('courses-toggle-label')!;
+    const chevron = document.getElementById('courses-chevron')!;
+    coursesToggle.addEventListener('click', () => {
+      const open = coursesMore.classList.toggle('hidden') === false;
+      label.textContent = open ? 'Show less' : 'Show more';
+      chevron.style.transform = open ? 'rotate(180deg)' : '';
+      coursesToggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>

@@ -1,6 +1,7 @@
 ---
 role: "Wireless Product Intern"
 org: "ZTE Corporation"
+orgFull: "Zhongxing Telecommunication Equipment Corporation (ZTE)"
 start: "07/2026"
 end: "08/2026"
 ---

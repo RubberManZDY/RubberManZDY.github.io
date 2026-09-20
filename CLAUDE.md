@@ -45,7 +45,7 @@ npm run preview      # preview the production build
     ├── components/             # Nav, Footer, ThemeToggle, ScrollProgress,
     │                           #   SectionHeading, ProjectCard, PublicationItem,
     │                           #   NewsList, Portrait
-    ├── pages/                  # 路由：index(About) / research/ / publications / cv / news
+    ├── pages/                  # 路由：index(About) / projects/ / publications / internship / cv / news
     └── styles/global.css       # ★ 设计 token（颜色/字体/暗色模式）+ 组件类（.btn/.card/.kicker…）
 ```
 
@@ -53,7 +53,7 @@ npm run preview      # preview the production build
 
 **论文**：在 `src/content/publications/` 新建 `xxx.md`，frontmatter：`title / authors（第一位加粗显示）/ venue / venueAbbr / year / status / summary / links[]`。自动出现在 Publications 页。
 
-**项目**：在 `src/content/projects/` 新建 `yyy.md`，frontmatter：`title / tag / status / start / end / summary / featured / links[]`，正文为 Markdown。自动生成 `/projects/yyy/` 详情页。
+**项目**：在 `src/content/projects/` 新建 `yyy.md`，frontmatter：`title / tag / status / start / end / summary / featured / category(research|course) / image / links[]`，正文为 Markdown。自动生成 `/projects/yyy/` 详情页；`category: course` 的项目显示在 Projects 页的 "Course Projects" 区。
 
 **新闻**：在 `src/content/news/` 新建 `YYYY-MM-DD-xxx.md`，frontmatter：`date / text / link?`。
 
@@ -82,8 +82,7 @@ npm run preview      # preview the production build
 ## TODO（内容待补）
 
 - [x] **项目页配图**：Fig. 1–5 全部就位（`public/projects/lpa-moe/`）
-- [ ] `public/portrait.jpg` 放正式照片，并把 `src/data/profile.ts` 的 `photo` 设为 `'/portrait.jpg'`
-- [ ] `public/cv.pdf` 放简历 PDF（CV 页下载按钮指向它）
+- [x] **照片**：`public/portrait.png` 已就位（从白底电子照片 PDF 提取）。About 页为扑克牌翻转卡片：正面 DZ 字母，点击翻面显示照片
 - [ ] 论文摘要（`summary`）与项目页正文为基于 CV 的草稿，请核对措辞
-- [ ] 页脚引语（Galileo）可换成自己的座右铭
+- [x] 页脚引语：已换成 "In the middle of difficulty lies opportunity."（爱因斯坦）
 - [ ] 部署前替换 `site.url` 与 `profile.ts` 顶部 TODO 标注的 URL

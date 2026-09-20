@@ -2,19 +2,19 @@
 import { profile, site } from '../data/profile';
 ---
 
-<footer class="mt-20 border-t border-line" role="contentinfo">
+<footer class="mt-2 border-t border-line" role="contentinfo">
   <div class="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-10 text-center sm:flex-row sm:justify-between sm:px-8 sm:text-left">
     <div class="text-sm text-ink2">
       <p>
         {site.copyright} · <a href={`mailto:${profile.email}`} class="link-underline">{profile.email}</a>
       </p>
       <p class="mt-1 text-xs text-ink2/80">
-        Built with <a href="https://astro.build" class="link-underline" target="_blank" rel="noopener">Astro</a> &amp;
-        <a href="https://tailwindcss.com" class="link-underline" target="_blank" rel="noopener">Tailwind CSS</a>.
-        Layout inspired by the
+        Built with <a href="https://astro.build" class="link-underline" target="_blank" rel="noopener">Astro</a> &amp;{' '}
+        <a href="https://tailwindcss.com" class="link-underline" target="_blank" rel="noopener">Tailwind CSS</a>.{' '}
+        Layout inspired by the{' '}
         <a href="https://github.com/alshedivat/al-folio" class="link-underline" target="_blank" rel="noopener">al-folio</a> theme.
       </p>
     </div>
-    <p class="font-serif text-lg italic text-ink2">“Measure what is measurable, and make measurable what is not so.”</p>
+    <p class="font-serif text-lg italic text-ink2">“In the middle of difficulty lies opportunity.”</p>
   </div>
 </footer>

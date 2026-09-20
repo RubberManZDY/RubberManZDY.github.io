@@ -7,19 +7,37 @@ import { getCollection } from 'astro:content';
 const projects = (await getCollection('projects')).sort((a, b) =>
   (b.data.end ?? '').localeCompare(a.data.end ?? '')
 );
+
+const researchProjects = projects.filter((p) => p.data.category === 'research');
+const courseProjects = projects.filter((p) => p.data.category === 'course');
 ---
 
 <BaseLayout title="Projects" description="Research projects by Dunyi Zhou.">
-  <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
+  <div class="mx-auto max-w-6xl px-5 pt-16 pb-6 sm:px-8 md:pt-20 md:pb-8">
     <SectionHeading kicker="Projects" title="Scientific Research" />
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-      {projects.map((project) => <ProjectCard project={project} />)}
+      {researchProjects.map((project) => <ProjectCard project={project} />)}
     </div>
 
-    <div class="mt-16 border-t border-line pt-10">
-      <p class="text-sm leading-6 text-ink2">
-        Interested in my work? <a href={`mailto:zdy_666@bupt.edu.cn`} class="link-underline font-medium text-ink">Get in touch</a>.
-      </p>
+    {
+      courseProjects.length > 0 && (
+        <section class="mt-16 border-t border-line pt-12" aria-label="Course projects">
+          <SectionHeading kicker="Projects" title="Course Projects" />
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {courseProjects.map((project) => <ProjectCard project={project} />)}
+          </div>
+        </section>
+      )
+    }
+
+    <div class="mt-8 flex flex-wrap items-center gap-3 border-t border-line pt-5">
+      <p class="text-sm leading-6 text-ink2">Interested in my work?</p>
+      <a
+        href={`mailto:zdy_666@bupt.edu.cn`}
+        class="rounded-md border border-line px-4 py-2 text-sm font-medium text-ink transition-colors duration-200 hover:border-accent hover:text-accent"
+      >
+        Get in touch <span aria-hidden="true">↗</span>
+      </a>
     </div>
   </div>
 </BaseLayout>

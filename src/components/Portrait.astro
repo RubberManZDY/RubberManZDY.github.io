@@ -2,37 +2,55 @@
 import { profile } from '../data/profile';
 
 /**
- * Portrait with a double-frame treatment. Renders a serif monogram
- * placeholder until profile.photo is set (see src/data/profile.ts).
+ * Flip-card portrait. Front: serif monogram. Back: photo (profile.photo).
+ * Click to flip — the <script> at the bottom toggles the 3D rotation.
  */
 ---
 
 <figure class="relative">
-  <div class="relative overflow-hidden rounded-lg">
-    {
-      profile.photo ? (
-        <img
-          src={profile.photo}
-          alt={`Portrait of ${profile.name}`}
-          width="480"
-          height="600"
-          fetchpriority="high"
-          class="aspect-4/5 w-full object-cover"
-        />
-      ) : (
-        <div
-          class="flex aspect-4/5 w-full items-center justify-center bg-gradient-to-br from-[#16233d] via-[#1e3a6e] to-[#1e40af]"
-          aria-hidden="true"
-        >
+  <button
+    id="portrait-card"
+    type="button"
+    aria-pressed="false"
+    aria-label={`Portrait card of ${profile.name}. Click to flip and reveal the photo.`}
+    class="group block w-full cursor-pointer rounded-lg border border-line [perspective:1400px] shadow-sm transition-shadow duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+  >
+    <div
+      id="portrait-card-inner"
+      class="relative aspect-4/5 transform-3d transition-transform duration-700 ease-out motion-reduce:duration-0"
+    >
+      <!-- Front: monogram -->
+      <div
+        class="absolute inset-0 overflow-hidden rounded-lg bg-gradient-to-br from-[#16233d] via-[#1e3a6e] to-[#1e40af] backface-hidden"
+        aria-hidden="true"
+      >
+        <div class="flex h-full w-full items-center justify-center">
           <span class="font-serif text-7xl font-light tracking-tight text-white/90">
             {profile.initials}
           </span>
         </div>
-      )
-    }
-    <!-- Offset inner frame -->
-    <div class="pointer-events-none absolute inset-3 rounded-md border border-white/25"></div>
-  </div>
+        <div class="pointer-events-none absolute inset-3 rounded-md border border-white/25"></div>
+      </div>
+      <!-- Back: photo -->
+      <div
+        class="absolute inset-0 overflow-hidden rounded-lg bg-white backface-hidden [transform:rotateY(180deg)]"
+        aria-hidden="true"
+      >
+        {
+          profile.photo && (
+            <img
+              src={profile.photo}
+              alt={`Portrait of ${profile.name}`}
+              width="2019"
+              height="1618"
+              fetchpriority="high"
+              class="h-full w-full object-cover"
+            />
+          )
+        }
+      </div>
+    </div>
+  </button>
   <!-- Offset outer frame -->
   <div class="pointer-events-none absolute -inset-2 -z-10 rounded-lg border border-line" aria-hidden="true"></div>
 
@@ -41,4 +59,20 @@ import { profile } from '../data/profile';
       {profile.photoCaption}
     </figcaption>
   )}
+  {
+    profile.photo && (
+      <p class="mt-1 text-center font-mono text-[10px] tracking-wide text-ink2/70">
+        Click the card to flip it
+      </p>
+    )
+  }
 </figure>
+
+<script>
+  const card = document.getElementById('portrait-card')!;
+  const inner = document.getElementById('portrait-card-inner')!;
+  card.addEventListener('click', () => {
+    const flipped = inner.classList.toggle('rotate-y-180');
+    card.setAttribute('aria-pressed', String(flipped));
+  });
+</script>

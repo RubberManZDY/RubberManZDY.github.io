@@ -43,6 +43,8 @@ const projects = defineCollection({
     summaryLead: z.string().optional(),
     /** Featured projects appear on the home page. */
     featured: z.boolean().default(false),
+    /** research = scientific research; course = course projects (second section on the projects page). */
+    category: z.enum(['research', 'course']).default('research'),
     links: z
       .array(z.object({ label: z.string(), url: z.string() }))
       .default([]),
@@ -65,6 +67,8 @@ const experience = defineCollection({
   schema: z.object({
     role: z.string(),
     org: z.string(),
+    /** Full legal name, shown on the Internship page (CV page keeps the short org). */
+    orgFull: z.string().optional(),
     start: z.string(),
     end: z.string(),
   }),

@@ -7,6 +7,7 @@ end: "Aug 2026"
 summaryLead: "First-author paper"
 summary: "published at the 2026 IEEE/CIC International Conference on Communications in China (ICCC)."
 featured: true
+category: "research"
 image: "/projects/lpa-moe/fig2.jpg"
 links:
   - label: "Paper (IEEE Xplore)"

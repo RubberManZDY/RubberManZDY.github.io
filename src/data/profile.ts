@@ -10,26 +10,33 @@ export const profile = {
   email: 'zdy_666@bupt.edu.cn',
 
   /** Small-caps line above the name on the home page. */
-  eyebrow: 'Wireless Communications · Time-Series Forecasting · Efficient Deep Learning',
+  eyebrow: 'Wireless Communications · Time-Series Forecasting',
 
   /** One-line role under the name. */
   role: 'Undergraduate at Beijing University of Posts and Telecommunications (BUPT)',
 
   location: 'Beijing, China',
 
-  /** Path to the portrait under /public. Empty string -> monogram placeholder.
-   *  To add a photo: put it at public/portrait.jpg and set this to '/portrait.jpg'. */
-  photo: '',
+  /** Back face of the flip-card portrait (see components/Portrait.astro).
+   *  Extracted from the white-background ID photo PDF; monogram stays on the front. */
+  photo: '/portrait.png',
 
   /** Photo caption (rendered under the portrait). */
   photoCaption: 'Beijing University of Posts and Telecommunications\nBeijing, China',
 
+  /** Full paper title — rendered in the serif display font inside the lead. */
+  paperTitle: 'LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers',
+
+  /** Link target for the paper title in the lead. */
+  paperUrl: 'https://ieeexplore.ieee.org/document/11680246',
+
   /** One-sentence lead shown in the home intro (full bio lives below). */
-  lead: 'I study efficient deep learning for time-series forecasting and next-generation wireless systems. My first-author paper, LPA-MoE, was published at ICCC 2026, and I gained industry experience analyzing 5G-A ISAC field-test data at ZTE.',
+  lead: 'I study machine learning for time-series forecasting and next-generation wireless communications. My first-author paper, LPA-MoE: A Lightweight Period-Aware MoE Model for Time Series Forecasting in Data Centers, was published at ICCC 2026, and I gained industry experience in ISAC at Zhongxing Telecommunication Equipment Corporation (ZTE).',
 
   bio: [
-    'I am an undergraduate at BUPT pursuing a B.Eng. in Telecommunications Engineering with Management, alongside a dual degree with Queen Mary University of London (QMUL). My work centers on efficient deep learning for time-series data and next-generation wireless systems.',
-    'My first-author paper, LPA-MoE, was published at the 2026 IEEE/CIC International Conference on Communications in China (ICCC). I also gained industry experience at ZTE, analyzing field-test data for 5G-A integrated sensing and communication (ISAC) systems. I am looking for graduate research opportunities in machine learning and wireless communications.',
+    'I am an undergraduate at BUPT pursuing a B.Eng. in Telecommunications Engineering with Management, alongside a dual degree with Queen Mary University of London (QMUL).',
+    'My work centers on machine learning for time-series forecasting and next-generation wireless communications.', 
+    'I am looking for postgraduate opportunities in machine learning, communications and telecommunications.'
   ],
 
   education: {
@@ -40,11 +47,18 @@ export const profile = {
     period: '09/2023-07/2027',
     gpa: 'GPA: 3.68/4.0 (89.27/100) · Ranking: Top 16% (47/293)',
     courses: [
-      { name: 'Principles of Communications I', score: 98 },
-      { name: 'Introduction to Electronic System', score: 98 },
-      { name: 'Digital Circuit Design', score: 97 },
-      { name: 'Microwave, Millimeterwave and Optical Transmission', score: 97 },
-      { name: 'Machine Learning', score: 93 },
+      { name: 'Principles of Communications I', score: 98, featured: true },
+      { name: 'Introduction to Electronic System', score: 98, featured: true },
+      { name: 'Digital Circuit Design', score: 97, featured: true },
+      { name: 'Microwave, Millimeterwave and Optical Transmission', score: 97, featured: true },
+      { name: 'Machine Learning', score: 93, featured: true },
+      { name: 'Digital Signal Processing', score: 93, featured: true },
+      { name: 'Advanced Mathematics 1', score: 99, featured: false },
+      { name: 'Linear Algebra', score: 96, featured: false },
+      { name: 'Advanced Mathematics 2', score: 95, featured: false },
+      { name: 'Engineering Mathematics', score: 98, featured: false },
+      { name: 'Signals and Systems Theory', score: 91, featured: false },
+      { name: 'Probability Theory and Stochastic Processes', score: 97, featured: false },
     ],
   },
 
@@ -64,10 +78,10 @@ export const profile = {
   ],
 
   researchInterests: [
-    'Time-series analysis & forecasting',
-    'Mixture-of-Experts & efficient deep learning',
     'Integrated sensing and communication (ISAC)',
-    'Wireless communications (5G-A and beyond)',
+    'Massive MIMO and Beamforming',
+    'Machine learning for IIoT',
+    'Time-series forecasting',
   ],
 
   skills: [

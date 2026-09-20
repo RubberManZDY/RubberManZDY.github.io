@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getCollection, render } from 'astro:content';
+
+const experiences = await getCollection('experience');
+const rendered = await Promise.all(
+  experiences
+    .sort((a, b) => b.data.end.localeCompare(a.data.end))
+    .map(async (exp) => ({ exp, body: await render(exp) }))
+);
+
+const yearOf = (date: string) => date.slice(-4);
+---
+
+<BaseLayout title="Internship" description="Internship experience of Dunyi Zhou.">
+  <div class="mx-auto max-w-4xl px-5 pt-16 pb-6 sm:px-8 md:pt-20 md:pb-8">
+    <SectionHeading kicker="Internship" title="Internship" />
+
+    <ul class="divide-y divide-line">
+      {
+        rendered.map(({ exp, body }) => (
+          <li class="flex gap-6 py-8 first:pt-0 last:pb-0">
+            <!-- Year gutter (publications style) -->
+            <div class="w-16 shrink-0 border-r border-line pr-4 text-right">
+              <span class="font-serif text-xl text-ink">{yearOf(exp.data.end)}</span>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <h3 class="display text-xl leading-snug">{exp.data.role}</h3>
+              <p class="mt-2 text-sm text-ink2">{exp.data.orgFull ?? exp.data.org}</p>
+              <p class="mt-1 font-mono text-xs uppercase tracking-wider whitespace-nowrap text-accent">
+                {exp.data.start} – {exp.data.end}
+              </p>
+
+              <div id={`details-${exp.id}`} class="prose-body mt-4 hidden border-t border-line pt-4">
+                <body.Content />
+              </div>
+
+              <div class="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  data-details-toggle
+                  aria-controls={`details-${exp.id}`}
+                  aria-expanded="false"
+                  class="inline-flex items-center gap-1.5 text-xs font-medium text-accent transition-colors hover:text-accent-strong"
+                >
+                  <span data-details-label>Details</span>
+                  <svg data-details-chevron class="h-3 w-3 transition-transform duration-200" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m3 4.5 3 3 3-3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<script>
+  // Expandable internship details ("Details" / "Hide")
+  document.querySelectorAll('[data-details-toggle]').forEach((button) => {
+    const panel = document.getElementById(button.getAttribute('aria-controls') ?? '');
+    const label = button.querySelector('[data-details-label]');
+    const chevron = button.querySelector('[data-details-chevron]');
+    if (!panel || !label || !chevron) return;
+    button.addEventListener('click', () => {
+      const open = panel.classList.toggle('hidden') === false;
+      label.textContent = open ? 'Hide' : 'Details';
+      chevron.style.transform = open ? 'rotate(180deg)' : '';
+      button.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>
