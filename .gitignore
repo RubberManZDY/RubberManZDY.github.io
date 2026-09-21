@@ -29,3 +29,6 @@ lonely-luminosity/
 # local source materials not part of the site
 /img/
 /官网论文pdf.pdf
+
+# local editor settings
+/.vscode/
