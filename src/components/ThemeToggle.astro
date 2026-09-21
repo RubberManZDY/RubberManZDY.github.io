@@ -3,7 +3,7 @@
 ---
 
 <button
-  id="theme-toggle"
+  data-theme-toggle
   type="button"
   class="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink2 transition-colors hover:border-accent hover:text-accent"
   aria-label="Toggle color theme"
@@ -21,14 +21,16 @@
 </button>
 
 <script>
-  const btn = document.getElementById('theme-toggle')!;
-  btn.addEventListener('click', () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try {
-      localStorage.setItem('theme', next);
-    } catch (e) {
-      /* storage unavailable — theme still applies for this page view */
-    }
+  // Nav renders this component twice (desktop + mobile), so bind by data attribute, not id.
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch (e) {
+        /* storage unavailable — theme still applies for this page view */
+      }
+    });
   });
 </script>
