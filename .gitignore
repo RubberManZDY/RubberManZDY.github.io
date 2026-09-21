@@ -27,6 +27,5 @@ pnpm-debug.log*
 lonely-luminosity/
 
 # local source materials not part of the site
+/img/
 /官网论文pdf.pdf
-/data_center_system.png
-/img/periodic_embedding_rgb.png

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import { profile } from '../../data/profile';
 import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects')).sort((a, b) =>
@@ -33,7 +34,7 @@ const courseProjects = projects.filter((p) => p.data.category === 'course');
     <div class="mt-8 flex flex-wrap items-center gap-3 border-t border-line pt-5">
       <p class="text-sm leading-6 text-ink2">Interested in my work?</p>
       <a
-        href={`mailto:zdy_666@bupt.edu.cn`}
+        href={`mailto:${profile.email}`}
         class="rounded-md border border-line px-4 py-2 text-sm font-medium text-ink transition-colors duration-200 hover:border-accent hover:text-accent"
       >
         Get in touch <span aria-hidden="true">↗</span>

@@ -7,7 +7,7 @@ export const profile = {
   name: 'Dunyi Zhou',
   /** Used for the monogram placeholder until a photo is provided. */
   initials: 'DZ',
-  email: 'zdy_666@bupt.edu.cn',
+  email: '18620050413@163.com',
 
   /** Small-caps line above the name on the home page. */
   eyebrow: 'Wireless Communications · Time-Series Forecasting',
