@@ -145,6 +145,6 @@ export const site = {
   title: 'Dunyi Zhou',
   description:
     'Dunyi Zhou is an undergraduate at BUPT working on efficient deep learning for time-series forecasting and next-generation wireless systems.',
-  url: 'https://dunyi-zhou.github.io', // TODO(deploy): update with real URL
+  url: 'https://rubbermanzdy.github.io',
   copyright: `© ${new Date().getFullYear()} Dunyi Zhou`,
 };

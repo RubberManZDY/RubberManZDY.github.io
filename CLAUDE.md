@@ -85,4 +85,4 @@ npm run preview      # preview the production build
 - [x] **照片**：`public/portrait.png` 已就位（从白底电子照片 PDF 提取）。About 页为扑克牌翻转卡片：正面 DZ 字母，点击翻面显示照片
 - [ ] 论文摘要（`summary`）与项目页正文为基于 CV 的草稿，请核对措辞
 - [x] 页脚引语：已换成 "In the middle of difficulty lies opportunity."（爱因斯坦）
-- [ ] 部署前替换 `site.url` 与 `profile.ts` 顶部 TODO 标注的 URL
+- [x] 部署：`site` 与 `profile.ts` 的 URL 已改为 `https://rubbermanzdy.github.io`
